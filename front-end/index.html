@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutriwell</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="responsive.css"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Agbalumo&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav id="navbar">
+        <div class="logo">
+            <img src="IMG/nutri.jpg" alt="myMeal">
+        </div>
+        <div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#serv">BMI</a></li>
+                <li><a href="#client-section">Diet & Exercises</a></li>
+                <li><a href="#contact us">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section id="home">
+        <div id="homediv">
+            <h1 class="h-primary">Welcome To Nutriwell</h1>
+            <p class="para">Welcome to Your Personalized Diet Planner, where your health and well-being are our top
+                priority. Understanding that every individual is unique, we tailor our dietary recommendations
+                specifically for you. By using your Body Mass Index (BMI), we can create a customized diet plan and
+                Exercises that
+                aligns with your personal health goals.</p>
+    </section>
+
+    <section class="services-container" id="serv">
+        <h1 class="h-primary center" id="bmi">BMI</h1>
+        <div id="services">
+            <div class="box">
+                <!-- <img src="IMG/fibers.png" alt="none"> -->
+                <h2 class="h-secondary center">what is BMI?</h2>
+                <p class="center">Body Mass Index (BMI) is a widely used measurement that helps determine whether an
+                    individual has a healthy body weight relative to their height. It is a simple and quick way to
+                    categorize people into different weight groups, which can provide insights into potential health
+                    risks associated with being underweight, normal weight, overweight, or obese.</p>
+                <h2 class="h-secondary center">How is BMI calculated?</h2>
+                <p class="center">BMI is calculated using the following formula:</p>
+                <p class="center">BMI = weight(kg) / height(cm sq)</p><br>
+                <p class="center">Alternatively, if you prefer to use pounds and inches:</p>
+                <p class="center">BMI = weight(lbs) x 703 / height(inches sq)</p><br>
+            </div>
+            <div class="box">
+                <img src="IMG/fibers.png" alt="none">
+                <h3 class="h-secondary center">BMI Calculator</h2>
+                    <p class="center">To calculate your precise BMI, please click the 'Calculate' button below&nbsp; :</p>
+                    <div class="box-item">
+                        <a href="calc.html">
+                            <button type="button" id="btn">Calculate</button>
+                        </a>
+                    </div>
+            </div>
+            <div class="box" id="chart">
+                <!-- <img src="IMG/fibers.png" alt="none"> -->
+                <h2 class="h-secondary center">BMI chart</h2>
+                <p class="center">Below is the BMI chart for quick reference&nbsp; :</p>
+                <iframe src="bmi.html" width="100%" height="400px" style="border:none;"></iframe>
+                <p class="center"><strong>Underweigh&nbsp; :&nbsp; </strong>May indicate malnutrition, eating disorders,
+                    or other underlying health
+                    issues.</p>
+                <p class="center"><strong>Overweight and Obesity&nbsp; :&nbsp; </strong>Associated with an increased
+                    risk of various health
+                    conditions, including heart disease, diabetes, high blood pressure, and certain cancers.</p><br>
+            </div>
+        </div>
+    </section>
+
+    <section id="client-section">
+        <h1 class="h-primary center" id="diet">Diet & Exercises</h1>
+        <div id="clients">
+            <div class="client-item">
+                <p class="center">Our diet and exercise recommendations are tailored based on your Body Mass Index
+                    (BMI), which is calculated using your height and weight. We also consider other important factors
+                    such as your age and gender to ensure the suggestions are personalized and effective.</p>
+            </div><br>
+            <div class="client-item">
+                <p class="center">To receive your personalized diet and exercise plan, please click the 'Start' button
+                    below.</p>
+            </div>
+            <div class="client-item">
+                <a href="form.html">
+                    <button type="button" id="btn">Start</button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="disclaimer-sec">
+        <div class="disclaimer"></div>
+        <h1 class="h-primary center" id="r1">Disclaimer</h1>
+        <div class="disc">
+            <p class="center">This website is provided on an "as is" and "as available" basis with all faults and
+                makes no representations or warranties of any kind, express or implied, regarding the accuracy,
+                reliability, or completeness of any information on the site.</p>
+            <p class="center">The content on this website is for informational purposes only and does not constitute
+                professional advice. The website owner and authors of the content are not liable for any errors or
+                omissions in the information provided or any damages arising from the use of the information
+                provided.</p>
+            <p class="center">The website owner reserves the right to make additions, deletions, or modifications to
+                the content at any time without prior notice.
+                Links to external websites are provided for convenience and informational purposes only. The
+                inclusion of any link does not imply endorsement by the website owner of the site or any association
+                with its operators.</p>
+            <p class="center">By using this website, you agree that the information provided is at your own risk and
+                that the website owner and authors will not be liable for any damages or losses resulting from the
+                use of the information provided.</p>
+        </div>
+        <div class="med disclaimer"></div>
+        <h1 class="h-primary center" id="r1"> Medical Disclaimer</h1>
+        <div class="disc" id="med-disc">
+            <p class="center">This website provides general information and is designed for educational purposes only.
+                The content on this site is not intended to be a substitute for professional medical advice, diagnosis,
+                or treatment. Always seek the advice of your physician or other qualified health provider with any
+                questions you may have regarding a medical condition.</p>
+            <p class="center">Never disregard professional medical advice or delay in seeking it because of something
+                you have read on this website. If you think you may have a medical emergency, call your doctor, go to
+                the emergency department, or call emergency services immediately.</p>
+            <p class="center">Reliance on any information provided by this website is solely at your own risk.</p>
+        </div>
+        </div>
+        <section class="contact" id="contact us">
+            <h1 class="h-primary center" id="r1">Contact Us</h1>
+            <div id="contact-us">
+            <div class="contact1">
+                <p class="center"><strong>E-mail &nbsp; :</strong>&nbsp; xyz@gmail.com</p>
+            </div>
+            <div class="contact1">
+                <p class="center"><strong>Phone &nbsp; :</strong>&nbsp; 9992992372</p>
+            </div>
+            <div class="contact1">
+                <p class="center"><strong>Instagram &nbsp; :</strong>&nbsp; Nutriwell_7</p>
+            </div>
+        </div>
+        <div id="rights">
+            <div class="c1"><img src="IMG/cr.png" alt=""></div>
+           <div class="c1"> <p class="center">All rights reserved,&nbsp; T&C applied.</p><div>
+        </div>
+        </section>
+</body>
+
+</html>

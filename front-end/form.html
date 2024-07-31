@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .form-container {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            padding: 30px;
+            box-sizing: border-box;
+            font-size: 16px;
+            max-width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step-active {
+            display: block;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #2c3e50;
+            font-size: 24px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin-bottom: 16px;
+            border: 1px solid #bdc3c7;
+            border-radius: 6px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .error {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: none;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        button.btn-prev {
+            background-color: #e74c3c;
+            margin-right: 10px;
+        }
+
+        button.btn-prev:hover {
+            background-color: #c0392b;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button-group button {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form id="multiStepForm" action="/submit" method="post">
+            <div class="form-step form-step-active">
+                <h2>Step 1: Name</h2>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <div class="error" id="nameError">Name should contain only letters and spaces.</div>
+                <div class="button-group">
+                    <button type="button" class="btn-next">Next</button>
+                </div>
+            </div>
+            <div class="form-step">
+                <h2>Step 2: Age</h2>
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required min="1">
+                <div class="error" id="ageError">Please enter a valid age.</div>
+                <div class="button-group">
+                    <button type="button" class="btn-prev">Previous</button>
+                    <button type="button" class="btn-next">Next</button>
+                </div>
+            </div>
+            <div class="form-step">
+                <h2>Step 3: Gender</h2>
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="" disabled selected>Select your gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+                <div class="error" id="genderError">Please select a gender.</div>
+                <div class="button-group">
+                    <button type="button" class="btn-prev">Previous</button>
+                    <button type="button" class="btn-next">Next</button>
+                </div>
+            </div>
+            <div class="form-step">
+                <h2>Step 4: Weight</h2>
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" name="weight" required min="1">
+                <div class="error" id="weightError">Please enter a valid weight.</div>
+                <div class="button-group">
+                    <button type="button" class="btn-prev">Previous</button>
+                    <button type="button" class="btn-next">Next</button>
+                </div>
+            </div>
+            <div class="form-step">
+                <h2>Step 5: Height</h2>
+                <label for="height">Height (cm):</label>
+                <input type="number" id="height" name="height" required step="0.01" min="0.01">
+                <div class="error" id="heightError">Please enter a valid height in centimeters.</div>
+                <div class="button-group">
+                    <button type="button" class="btn-prev">Previous</button>
+                    <button type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const formSteps = document.querySelectorAll('.form-step');
+            const btnNext = document.querySelectorAll('.btn-next');
+            const btnPrev = document.querySelectorAll('.btn-prev');
+            let currentStep = 0;
+
+            function showError(stepIndex) {
+                const step = formSteps[stepIndex];
+                const inputs = step.querySelectorAll('input, select');
+                let valid = true;
+
+                inputs.forEach(input => {
+                    const errorElement = document.getElementById(`${input.id}Error`);
+                    if (input.id === 'name' && !/^[A-Za-z\s]+$/.test(input.value)) {
+                        errorElement.textContent = 'Name should contain only letters and spaces.';
+                        errorElement.style.display = 'block';
+                        valid = false;
+                    } else if (!input.checkValidity()) {
+                        errorElement.textContent = input.title || 'Please fill out this field correctly.';
+                        errorElement.style.display = 'block';
+                        valid = false;
+                    } else {
+                        errorElement.style.display = 'none';
+                    }
+                });
+
+                return valid;
+            }
+
+            btnNext.forEach((button) => {
+                button.addEventListener('click', () => {
+                    if (showError(currentStep)) {
+                        formSteps[currentStep].classList.remove('form-step-active');
+                        currentStep = (currentStep + 1) % formSteps.length;
+                        formSteps[currentStep].classList.add('form-step-active');
+                    }
+                });
+            });
+
+            btnPrev.forEach((button) => {
+                button.addEventListener('click', () => {
+                    formSteps[currentStep].classList.remove('form-step-active');
+                    currentStep = (currentStep - 1 + formSteps.length) % formSteps.length;
+                    formSteps[currentStep].classList.add('form-step-active');
+                });
+            });
+
+            document.getElementById('multiStepForm').addEventListener('submit', (e) => {
+                if (!showError(currentStep)) {
+                    e.preventDefault();
+                }
+            });
+        });
+
+        // for backend
+        document.getElementById('multiStepForm').addEventListener('/submit', function(event) {
+            event.preventDefault();
+
+            const data = {
+                height: document.getElementById('height').value,
+                weight: document.getElementById('weight').value,
+                age: document.getElementById('age').value,
+                gender: document.getElementById('gender').value
+            };
+
+            fetch('/calculate-bmi', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('BMI:', data.bmi);
+                console.log('Diet Recommendation:', data.dietRecommendation);
+                console.log('Exercise Recommendation:', data.exerciseRecommendation);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
