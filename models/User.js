@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// Define the User schema
 const userSchema = new mongoose.Schema({
     height: { type: Number, required: true },
     weight: { type: Number, required: true },
@@ -8,4 +9,7 @@ const userSchema = new mongoose.Schema({
     bmi: { type: Number, required: true }
 });
 
-module.exports = mongoose.model('User', userSchema);
+// Create the User model
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;
